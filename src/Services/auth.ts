@@ -1,6 +1,12 @@
-import { resolvePreset } from "@babel/core";
+interface Response {
+    token: string;
+    user: {
+        name: string;
+        email: string;
+    };
+}
 
-export function signIn() {
+export function signIn(): Promise<Response> {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve({
