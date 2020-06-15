@@ -1,0 +1,17 @@
+{
+  "name": "AuthenticationReactNative",
+  "displayName": "AuthenticationReactNative",
+  "expo": {
+    "name": "AuthenticationReactNative",
+    "slug": "AuthenticationReactNative",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
