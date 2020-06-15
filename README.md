@@ -1,0 +1,1 @@
+# React Authentication (TypeScript) Rocketseat Masterclass 
