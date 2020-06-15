@@ -6,6 +6,7 @@ interface AuthContextData {
     signed: boolean;
     token: string;
     user: object | null;
+    loading: boolean;
     signIn(): Promise<void>;
     signOut(): void;
 }
@@ -14,14 +15,16 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({children}) => {
     const [user, setUser] = useState<Object | null>(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function loadStorageData() {
             const storageUser = await AsyncStorage.getItem('@Authentication/React-Native:user');
             const storageToken = await AsyncStorage.getItem('@Authentication/React-Native:token');
-        
+
             if (storageToken && storageUser) {
                 setUser(JSON.parse(storageUser));
+                setLoading(false);
             }
         }
 
@@ -45,8 +48,9 @@ export const AuthProvider: React.FC = ({children}) => {
             setUser(null);
         })
     }
+
     return (
-        <AuthContext.Provider value={{signed: !!user, user, signIn, signOut}}>
+        <AuthContext.Provider value={{signed: !!user, user, loading, signIn, signOut}}>
             {children}
         </AuthContext.Provider>
     );
